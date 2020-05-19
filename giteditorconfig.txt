@@ -12,6 +12,11 @@ npp .gitconfig # open Git config file, should contain snip below
 
 
 ~/.bashrc File
-alias npp='notepad++.exe -multiInst -nosession'
+#alias npp='notepad++.exe -multiInst -nosession'
 
 ~/.gitconfig File
+#[user]
+#	email = njwburns@gmail.com
+#	name = Noah Burns
+#[core]
+#	editor = notepad++.exe -multiInst -nosession
