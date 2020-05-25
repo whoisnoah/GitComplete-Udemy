@@ -1,0 +1,1014 @@
+################################################################################
+# Branching basics - create, rename, delete
+################################################################################
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch mynewbranch
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -a
+* master
+  mynewbranch
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git checkout mynewbranch
+Switched to branch 'mynewbranch'
+M       README.md
+M       simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (mynewbranch)
+$ git branch -a
+  master
+* mynewbranch
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (mynewbranch)
+$ git hist
+* 6fed407 (HEAD -> mynewbranch, origin/master, origin/HEAD, master) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+:...skipping...
+* 6fed407 (HEAD -> mynewbranch, origin/master, origin/HEAD, master) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+~
+~
+~
+~
+~
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (mynewbranch)
+$ git checkout master
+Switched to branch 'master'
+M       README.md
+M       simple.html
+Your branch is up to date with 'origin/master'.
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -a
+* master
+  mynewbranch
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -m mynewbranch newbranch
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -a
+* master
+  newbranch
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -d newbranch
+Deleted branch newbranch (was 6fed407).
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+################################################################################
+# merging basics - fast forward merge (no changes in master, only in branch)
+################################################################################
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+        modified:   simple.html
+
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch
+* master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git checkout -b title-change
+Switched to a new branch 'title-change'
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (title-change)
+$ git status
+On branch title-change
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+        modified:   simple.html
+
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (title-change)
+$ git branch
+  master
+* title-change
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (title-change)
+$ git branch -a
+  master
+* title-change
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (title-change)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (title-change)
+$ git status
+On branch title-change
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+        modified:   simple.html
+
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (title-change)
+$ git commit -am "Changed title of simple.html"
+[title-change deb34f7] Changed title of simple.html
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (title-change)
+$ git status
+On branch title-change
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (title-change)
+$ git log --oneline
+deb34f7 (HEAD -> title-change) Changed title of simple.html
+6fed407 (origin/master, origin/HEAD, master) added deployment section
+c11362c added readme
+67d9515 adding this thing
+5a898e9 addign gitignore file
+e17da00 deleting lvl1 and all children
+d2da79e deleted hipsumco.txt test file
+b0df0e1 deleting newfile.txt
+024506e renaming lvl1 file
+14290b5 moving the file back to lvl2
+7b67d6f moving file from lvl2 to lvl3
+8454170 renamed lvl2 file
+76db7c2 renaming lvl3 file to lvl3-file
+902bf57 recursive file add test
+396ccfa more ipsum stuff
+270fc05 adding "newfile.txt"
+bd7543d adding more ipsum text
+4f77a10 first commit to new web project
+4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+e73f914 Adding Purpose section to README
+34f563b Adding README file
+5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (title-change)
+$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git diff master title-change
+diff --git a/README.md b/README.md
+index c71dee0..4343764 100644
+--- a/README.md
++++ b/README.md
+@@ -7,5 +7,7 @@ This repository is for showing how Git and GitHub work
+ Sample website with plenty of files for demos
+
+ ## Deployment
++This is a simple web project, deployment can be on any web server or local file system.
+
+-## How to Contribute
+\ No newline at end of file
++## How to Contribute
++It's a sample - just clone and do whatever
+\ No newline at end of file
+diff --git a/simple.html b/simple.html
+index ca5e908..21c7a76 100644
+--- a/simple.html
++++ b/simple.html
+@@ -1,6 +1,6 @@
+ <!DOCTYPE html>
+ <head>
+-       <title></title>
++       <title>Changing Title in HTML</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+                body {
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git difftool master title-change
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git merge title-change
+Updating 6fed407..deb34f7
+Fast-forward
+ README.md   | 4 +++-
+ simple.html | 2 +-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git hist
+* deb34f7 (HEAD -> master, title-change) Changed title of simple.html
+* 6fed407 (origin/master, origin/HEAD) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --online --graph --decorate
+fatal: unrecognized argument: --online
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate
+* deb34f7 (HEAD -> master, title-change) Changed title of simple.html
+* 6fed407 (origin/master, origin/HEAD) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch
+* master
+  title-change
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -d title-change
+Deleted branch title-change (was deb34f7).
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate
+* deb34f7 (HEAD -> master) Changed title of simple.html
+* 6fed407 (origin/master, origin/HEAD) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+
+
+################################################################################
+# merging basics - no forward merge (show branching history)
+################################################################################
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch
+* master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git checkout -b add-copyright
+Switched to a new branch 'add-copyright'
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (add-copyright)
+$ git branch
+* add-copyright
+  master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (add-copyright)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (add-copyright)
+$  git status
+On branch add-copyright
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   simple.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (add-copyright)
+$ git commit -am "adding copyright notice to simple.html"
+[add-copyright d3be850] adding copyright notice to simple.html
+ 1 file changed, 3 insertions(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (add-copyright)
+$ npp README.md
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (add-copyright)
+$ git commit -am "adding copyright notice to readme"
+[add-copyright 3f6c917] adding copyright notice to readme
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (add-copyright)
+$ git log --oneline --graph --decorate
+* 3f6c917 (HEAD -> add-copyright) adding copyright notice to readme
+* d3be850 adding copyright notice to simple.html
+* deb34f7 (master) Changed title of simple.html
+* 6fed407 (origin/master, origin/HEAD) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (add-copyright)
+$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git merge add-copyright --no-ff
+Merge made by the 'recursive' strategy.
+ README.md   | 5 ++++-
+ simple.html | 3 +++
+ 2 files changed, 7 insertions(+), 1 deletion(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate
+*   bfa4a3f (HEAD -> master) Merge branch 'add-copyright'
+|\
+| * 3f6c917 (add-copyright) adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 (origin/master, origin/HEAD) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -d add-copyright
+Deleted branch add-copyright (was 3f6c917).
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate
+*   bfa4a3f (HEAD -> master) Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 (origin/master, origin/HEAD) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+################################################################################
+# merging basics - automatic merge
+################################################################################
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (simple-changes)
+$ git status
+On branch simple-changes
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (simple-changes)
+$ git branch
+  master
+* simple-changes
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (simple-changes)
+$ npp humans.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (simple-changes)
+$ git status
+On branch simple-changes
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (simple-changes)
+$ git commit -am "Adding Noah to humans.txt"
+[simple-changes db808f3] Adding Noah to humans.txt
+ 1 file changed, 1 insertion(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (simple-changes)
+$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp README.md
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate --all
+* db808f3 (simple-changes) Adding Noah to humans.txt
+*   bfa4a3f (HEAD -> master) Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 (origin/master, origin/HEAD) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git merge simple-changes -m "Merging changes from simple-changes branch"
+Updating bfa4a3f..db808f3
+Fast-forward (no commit created; -m option ignored)
+ humans.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate --all
+* db808f3 (HEAD -> master, simple-changes) Adding Noah to humans.txt
+*   bfa4a3f Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 (origin/master, origin/HEAD) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git add README.md
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git checkout simple-changes
+Switched to branch 'simple-changes'
+M       README.md
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (simple-changes)
+$ npp humans.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (simple-changes)
+$ git commit -am "fixed spacing"
+[simple-changes fa76ce8] fixed spacing
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (simple-changes)
+$ git status
+On branch simple-changes
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (simple-changes)
+$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -m "what?
+> "
+On branch master
+Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp README.md
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git add README.md
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -m "fixed intro in readme"
+[master cbfcdde] fixed intro in readme
+ 1 file changed, 1 insertion(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -a
+* master
+  simple-changes
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git merge simple-changes -m "Merging changes from simple-changes branch"
+Auto-merging README.md
+Merge made by the 'recursive' strategy.
+ README.md  | 1 +
+ humans.txt | 4 ++--
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate --all
+*   39aa2b6 (HEAD -> master) Merging changes from simple-changes branch
+|\
+| * fa76ce8 (simple-changes) fixed spacing
+* | cbfcdde fixed intro in readme
+|/
+* db808f3 Adding Noah to humans.txt
+*   bfa4a3f Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 (origin/master, origin/HEAD) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+################################################################################
+# merging basics - merge conflicts
+################################################################################
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 8 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -a
+* master
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git checkout -b conflict-test
+Switched to a new branch 'conflict-test'
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (conflict-test)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (conflict-test)
+$ git commit -am "making changes to simple.html"
+[conflict-test c53a9b0] making changes to simple.html
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (conflict-test)
+$ git status
+On branch conflict-test
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (conflict-test)
+$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 8 commits.
+  (use "git push" to publish your local commits)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git add simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -m "conflicting changes test"
+[master 5593c92] conflicting changes test
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate --all
+* 5593c92 (HEAD -> master) conflicting changes test
+| * c53a9b0 (conflict-test) making changes to simple.html
+|/
+*   39aa2b6 Merging changes from simple-changes branch
+|\
+| * fa76ce8 fixed spacing
+* | cbfcdde fixed intro in readme
+|/
+* db808f3 Adding Noah to humans.txt
+*   bfa4a3f Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 (origin/master, origin/HEAD) added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+* 270fc05 adding "newfile.txt"
+* bd7543d adding more ipsum text
+* 4f77a10 first commit to new web project
+*   4beb7f0 Merge pull request #6 from jasongtaylor/feature-readme
+|\
+| * e73f914 Adding Purpose section to README
+| * 34f563b Adding README file
+|/
+* 5c05047 Copying files from initializr project zip file and then creating simple.html as basis for super simple pages
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch
+  conflict-test
+* master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git difftool master conflict-test
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git merge conflict-test
+Auto-merging simple.html
+CONFLICT (content): Merge conflict in simple.html
+Automatic merge failed; fix conflicts and then commit the result.
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master|MERGING)
+$ ls
+404.html                          crossdomain.xml  favicon.ico  humans.txt  js/   myfile.txt  robots.txt
+apple-touch-icon-precomposed.png  css/             fonts/       index.html  log/  README.md   simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master|MERGING)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master|MERGING)
+$ git mergetool
+Merging:
+simple.html
+
+Normal merge conflict for 'simple.html':
+  {local}: modified file
+  {remote}: modified file
+warning: CRLF will be replaced by LF in simple.html.
+The file will have its original line endings in your working directory
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master|MERGING)
+$ git commit -m "fixing merge conflicts"
+[master d391c0e] fixing merge conflicts
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 11 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        simple.html.orig
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp.gitignore
+bash: npp.gitignore: command not found
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp gitignore
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ ls
+404.html                          crossdomain.xml  favicon.ico  humans.txt  js/   myfile.txt  robots.txt   simple.html.orig
+apple-touch-icon-precomposed.png  css/             fonts/       index.html  log/  README.md   simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp .gitignore
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 11 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -m "updating .gitignore to excplude merge temp files"
+On branch master
+Your branch is ahead of 'origin/master' by 11 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   .gitignore
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -am "updating .gitignore to excplude merge temp files"
+warning: CRLF will be replaced by LF in .gitignore.
+The file will have its original line endings in your working directory
+[master 1309c16] updating .gitignore to excplude merge temp files
+ 1 file changed, 1 insertion(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 12 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch
+  conflict-test
+* master
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -d conflict-test
+Deleted branch conflict-test (was c53a9b0).
