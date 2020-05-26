@@ -1,0 +1,414 @@
+################################################################################
+################################################################################
+# simple tags / lightweight tags example
+################################################################################
+################################################################################
+# git tag [tagname] - tags are just labels for specific commits
+# git tag --delete [tagname]
+\
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --graph --decorate --all --oneline
+* afbe7ee (HEAD -> master, origin/master, origin/HEAD) updated several files with text descriptions
+* 60635f4 updated humans.txt after stash pop
+* a3af73d quick readme update before apply stash
+* e868f95 modified simple.html
+* 836edc8 added info to robots.txt
+* 4169652 simple edit for pull with rebase test
+* 91af3c4 Update index.html
+* 13afeab changes after rebasing conflict
+* 05f177d changes made in big-trouble branch
+* 519221b more master branch commits
+* c0ff015 master branch before rebasing conflicts
+* 5efa380 more rebasing changes
+* 62788a3 updated thanks section in humans.txt
+* 0dffbd6 updating readme from master to test repasing
+* 1309c16 updating .gitignore to excplude merge temp files
+*   d391c0e fixing merge conflicts
+|\
+| * c53a9b0 making changes to simple.html
+* | 5593c92 conflicting changes test
+|/
+*   39aa2b6 Merging changes from simple-changes branch
+|\
+| * fa76ce8 fixed spacing
+* | cbfcdde fixed intro in readme
+|/
+* db808f3 Adding Noah to humans.txt
+*   bfa4a3f Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git tag myTag
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --graph --decorate --all --oneline
+* afbe7ee (HEAD -> master, tag: myTag, origin/master, origin/HEAD) updated several files with text descriptions
+* 60635f4 updated humans.txt after stash pop
+* a3af73d quick readme update before apply stash
+* e868f95 modified simple.html
+* 836edc8 added info to robots.txt
+* 4169652 simple edit for pull with rebase test
+* 91af3c4 Update index.html
+* 13afeab changes after rebasing conflict
+* 05f177d changes made in big-trouble branch
+* 519221b more master branch commits
+* c0ff015 master branch before rebasing conflicts
+* 5efa380 more rebasing changes
+* 62788a3 updated thanks section in humans.txt
+* 0dffbd6 updating readme from master to test repasing
+* 1309c16 updating .gitignore to excplude merge temp files
+*   d391c0e fixing merge conflicts
+|\
+| * c53a9b0 making changes to simple.html
+* | 5593c92 conflicting changes test
+|/
+*   39aa2b6 Merging changes from simple-changes branch
+|\
+| * fa76ce8 fixed spacing
+* | cbfcdde fixed intro in readme
+|/
+* db808f3 Adding Noah to humans.txt
+*   bfa4a3f Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git tag --list
+myTag
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git show myTag
+commit afbe7eef174a0b4354f0400e23b88a974c263e1d (HEAD -> master, tag: myTag, origin/master, origin/HEAD)
+Author: Noah Burns <njwburns@gmail.com>
+Date:   Mon May 25 19:28:48 2020 -0500
+
+    updated several files with text descriptions
+
+diff --git a/humans.txt b/humans.txt
+index 4f9d3b0..1d92dce 100644
+--- a/humans.txt
++++ b/humans.txt
+@@ -1,5 +1,6 @@
+ # humanstxt.org/
+ # The humans responsible & technology colophon
++# adding some changes to test multiple stash
+
+ # TEAM
+
+diff --git a/robots.txt b/robots.txt
+index 773585f..ceb64c9 100644
+--- a/robots.txt
++++ b/robots.txt
+@@ -1,6 +1,6 @@
+ # robotstxt.org/
+
+ adding text for stasing test
+-
++more tect for stashing
+
+ User-agent: *
+diff --git a/simple.html b/simple.html
+index b416ea9..d4088e8 100644
+--- a/simple.html
++++ b/simple.html
+@@ -6,6 +6,7 @@ more changes for rebasing conflict
+
+ PULL WITH REBASE
+ stashing test
++stashing test #2
+ -->
+ <head>
+        <title>Master Branch Title Change</title>
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git tag --delete myTag
+Deleted tag 'myTag' (was afbe7ee)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git tag --list
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$
+
+################################################################################
+################################################################################
+# annotated tags
+################################################################################
+################################################################################
+git tag -a [tagname]
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git tag -a v-1.0
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git tag --list
+v-1.0
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate --all
+* afbe7ee (HEAD -> master, tag: v-1.0, origin/master, origin/HEAD) updated several files with text descriptions
+* 60635f4 updated humans.txt after stash pop
+* a3af73d quick readme update before apply stash
+* e868f95 modified simple.html
+* 836edc8 added info to robots.txt
+* 4169652 simple edit for pull with rebase test
+* 91af3c4 Update index.html
+* 13afeab changes after rebasing conflict
+* 05f177d changes made in big-trouble branch
+* 519221b more master branch commits
+* c0ff015 master branch before rebasing conflicts
+* 5efa380 more rebasing changes
+* 62788a3 updated thanks section in humans.txt
+* 0dffbd6 updating readme from master to test repasing
+* 1309c16 updating .gitignore to excplude merge temp files
+*   d391c0e fixing merge conflicts
+|\
+| * c53a9b0 making changes to simple.html
+* | 5593c92 conflicting changes test
+|/
+*   39aa2b6 Merging changes from simple-changes branch
+|\
+| * fa76ce8 fixed spacing
+* | cbfcdde fixed intro in readme
+|/
+* db808f3 Adding Noah to humans.txt
+*   bfa4a3f Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git show v-1.0
+tag v-1.0
+Tagger: Noah Burns <njwburns@gmail.com>
+Date:   Mon May 25 19:44:10 2020 -0500
+
+Release Version 1.0
+
+commit afbe7eef174a0b4354f0400e23b88a974c263e1d (HEAD -> master, tag: v-1.0, origin/master, origin/HEAD)
+Author: Noah Burns <njwburns@gmail.com>
+Date:   Mon May 25 19:28:48 2020 -0500
+
+    updated several files with text descriptions
+
+diff --git a/humans.txt b/humans.txt
+index 4f9d3b0..1d92dce 100644
+--- a/humans.txt
++++ b/humans.txt
+@@ -1,5 +1,6 @@
+ # humanstxt.org/
+ # The humans responsible & technology colophon
++# adding some changes to test multiple stash
+
+ # TEAM
+
+diff --git a/robots.txt b/robots.txt
+index 773585f..ceb64c9 100644
+--- a/robots.txt
++++ b/robots.txt
+@@ -1,6 +1,6 @@
+ # robotstxt.org/
+
+ adding text for stasing test
+-
++more tect for stashing
+
+ User-agent: *
+diff --git a/simple.html b/simple.html
+index b416ea9..d4088e8 100644
+--- a/simple.html
++++ b/simple.html
+@@ -6,6 +6,7 @@ more changes for rebasing conflict
+
+ PULL WITH REBASE
+ stashing test
++stashing test #2
+ -->
+ <head>
+
+
+
+################################################################################
+################################################################################
+# comparing tags
+################################################################################
+################################################################################
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp index.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git tag -a v-1.1
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -am "updating for tag 1.1"
+[master 85d963b] updating for tag 1.1
+ 2 files changed, 2 insertions(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -ammend
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit --amend
+[master ea7501b] updating for tag 1.2
+ Date: Mon May 25 19:49:21 2020 -0500
+ 2 files changed, 2 insertions(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git tag v-1.2 -m "version 1.2 release"
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git tag --list
+v-1.0
+v-1.1
+v-1.2
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --decorate --graph --all
+* ea7501b (HEAD -> master, tag: v-1.2) updating for tag 1.2
+* afbe7ee (tag: v-1.1, tag: v-1.0, origin/master, origin/HEAD) updated several files with text descriptions
+* 60635f4 updated humans.txt after stash pop
+* a3af73d quick readme update before apply stash
+* e868f95 modified simple.html
+* 836edc8 added info to robots.txt
+* 4169652 simple edit for pull with rebase test
+* 91af3c4 Update index.html
+* 13afeab changes after rebasing conflict
+* 05f177d changes made in big-trouble branch
+* 519221b more master branch commits
+* c0ff015 master branch before rebasing conflicts
+* 5efa380 more rebasing changes
+* 62788a3 updated thanks section in humans.txt
+* 0dffbd6 updating readme from master to test repasing
+* 1309c16 updating .gitignore to excplude merge temp files
+*   d391c0e fixing merge conflicts
+|\
+| * c53a9b0 making changes to simple.html
+* | 5593c92 conflicting changes test
+|/
+*   39aa2b6 Merging changes from simple-changes branch
+|\
+| * fa76ce8 fixed spacing
+* | cbfcdde fixed intro in readme
+|/
+* db808f3 Adding Noah to humans.txt
+*   bfa4a3f Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git diff v-1.0 v-1.2
+diff --git a/index.html b/index.html
+index d186840..7f2b571 100644
+--- a/index.html
++++ b/index.html
+@@ -5,6 +5,7 @@
+ <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+ <!--
+ comments added to show demo change in github
++testing tags
+ -->
+     <head>
+         <meta charset="utf-8">
+diff --git a/simple.html b/simple.html
+index d4088e8..57f364a 100644
+--- a/simple.html
++++ b/simple.html
+@@ -7,6 +7,7 @@ more changes for rebasing conflict
+ PULL WITH REBASE
+ stashing test
+ stashing test #2
++tagging test v1.2
+ -->
+ <head>
+        <title>Master Branch Title Change</title>
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git difftool v-1.0 v-1.2
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$
+
+

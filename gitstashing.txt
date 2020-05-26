@@ -1,0 +1,734 @@
+################################################################################
+# stashing basics - save changes for later but don' tadd or commit
+################################################################################
+# git stash save
+# git stash apply
+# git stash drop
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ ls
+404.html                          crossdomain.xml  favicon.ico  humans.txt  js/   myfile.txt  robots.txt   simple.html.orig
+apple-touch-icon-precomposed.png  css/             fonts/       index.html  log/  README.md   simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   simple.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash save
+Saved working directory and index state WIP on master: 4169652 simple edit for pull with rebase test
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp robots.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -am "added info to robots.txt"
+g[master 836edc8] added info to robots.txt
+ 1 file changed, 3 insertions(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate --all
+* 836edc8 (HEAD -> master) added info to robots.txt
+| * 1a49b10 (refs/stash) WIP on master: 4169652 simple edit for pull with rebase test
+|/|
+| * b2ee023 index on master: 4169652 simple edit for pull with rebase test
+|/
+* 4169652 (origin/master, origin/HEAD) simple edit for pull with rebase test
+* 91af3c4 Update index.html
+* 13afeab changes after rebasing conflict
+* 05f177d changes made in big-trouble branch
+* 519221b more master branch commits
+* c0ff015 master branch before rebasing conflicts
+* 5efa380 more rebasing changes
+* 62788a3 updated thanks section in humans.txt
+* 0dffbd6 updating readme from master to test repasing
+* 1309c16 updating .gitignore to excplude merge temp files
+*   d391c0e fixing merge conflicts
+|\
+| * c53a9b0 making changes to simple.html
+* | 5593c92 conflicting changes test
+|/
+*   39aa2b6 Merging changes from simple-changes branch
+|\
+| * fa76ce8 fixed spacing
+* | cbfcdde fixed intro in readme
+|/
+* db808f3 Adding Noah to humans.txt
+*   bfa4a3f Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash apply
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   simple.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -am "modified simple.html"
+[master e868f95] modified simple.html
+ 1 file changed, 1 insertion(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash list
+stash@{0}: WIP on master: 4169652 simple edit for pull with rebase test
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash drop
+Dropped refs/stash@{0} (1a49b109094cc799c4c31be498d50136a25cb379)
+
+
+
+################################################################################
+# stashing untracked files using pop
+################################################################################
+# git stash save -u
+# git stash list
+# git stash apply
+# git stash drop
+# git stash pop
+
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ ls
+404.html                          crossdomain.xml  favicon.ico  humans.txt  js/   myfile.txt  robots.txt   simple.html.orig
+apple-touch-icon-precomposed.png  css/             fonts/       index.html  log/  README.md   simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   simple.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash save
+Saved working directory and index state WIP on master: 4169652 simple edit for pull with rebase test
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp robots.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -am "added info to robots.txt"
+g[master 836edc8] added info to robots.txt
+ 1 file changed, 3 insertions(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git log --oneline --graph --decorate --all
+* 836edc8 (HEAD -> master) added info to robots.txt
+| * 1a49b10 (refs/stash) WIP on master: 4169652 simple edit for pull with rebase test
+|/|
+| * b2ee023 index on master: 4169652 simple edit for pull with rebase test
+|/
+* 4169652 (origin/master, origin/HEAD) simple edit for pull with rebase test
+* 91af3c4 Update index.html
+* 13afeab changes after rebasing conflict
+* 05f177d changes made in big-trouble branch
+* 519221b more master branch commits
+* c0ff015 master branch before rebasing conflicts
+* 5efa380 more rebasing changes
+* 62788a3 updated thanks section in humans.txt
+* 0dffbd6 updating readme from master to test repasing
+* 1309c16 updating .gitignore to excplude merge temp files
+*   d391c0e fixing merge conflicts
+|\
+| * c53a9b0 making changes to simple.html
+* | 5593c92 conflicting changes test
+|/
+*   39aa2b6 Merging changes from simple-changes branch
+|\
+| * fa76ce8 fixed spacing
+* | cbfcdde fixed intro in readme
+|/
+* db808f3 Adding Noah to humans.txt
+*   bfa4a3f Merge branch 'add-copyright'
+|\
+| * 3f6c917 adding copyright notice to readme
+| * d3be850 adding copyright notice to simple.html
+|/
+* deb34f7 Changed title of simple.html
+* 6fed407 added deployment section
+* c11362c added readme
+* 67d9515 adding this thing
+* 5a898e9 addign gitignore file
+* e17da00 deleting lvl1 and all children
+* d2da79e deleted hipsumco.txt test file
+* b0df0e1 deleting newfile.txt
+* 024506e renaming lvl1 file
+* 14290b5 moving the file back to lvl2
+* 7b67d6f moving file from lvl2 to lvl3
+* 8454170 renamed lvl2 file
+* 76db7c2 renaming lvl3 file to lvl3-file
+* 902bf57 recursive file add test
+* 396ccfa more ipsum stuff
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash apply
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   simple.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -am "modified simple.html"
+[master e868f95] modified simple.html
+ 1 file changed, 1 insertion(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash list
+stash@{0}: WIP on master: 4169652 simple edit for pull with rebase test
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash drop
+Dropped refs/stash@{0} (1a49b109094cc799c4c31be498d50136a25cb379)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git ls-files
+.gitignore
+.htaccess
+404.html
+README.md
+apple-touch-icon-precomposed.png
+crossdomain.xml
+css/bootstrap-theme.css
+css/bootstrap-theme.css.map
+css/bootstrap-theme.min.css
+css/bootstrap.css
+css/bootstrap.css.map
+css/bootstrap.min.css
+css/main.css
+favicon.ico
+fonts/glyphicons-halflings-regular.eot
+fonts/glyphicons-halflings-regular.svg
+fonts/glyphicons-halflings-regular.ttf
+fonts/glyphicons-halflings-regular.woff
+humans.txt
+index.html
+js/main.js
+js/plugins.js
+js/vendor/bootstrap.js
+js/vendor/bootstrap.min.js
+js/vendor/jquery-1.11.0.min.js
+js/vendor/modernizr-2.6.2-respond-1.1.0.min.js
+robots.txt
+simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp humans.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ ls
+404.html                          crossdomain.xml  favicon.ico  humans.txt  js/   myfile.txt  robots.txt   simple.html.orig
+apple-touch-icon-precomposed.png  css/             fonts/       index.html  log/  README.md   simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp newfile.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        newfile.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash
+Saved working directory and index state WIP on master: e868f95 modified simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        newfile.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash apply
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        newfile.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash drop
+Dropped refs/stash@{0} (a2312ea5832a19d4cd07a3cb7f897d458cb5d944)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash list
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash -u
+Saved working directory and index state WIP on master: e868f95 modified simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash list
+stash@{0}: WIP on master: e868f95 modified simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp README.md
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -m "quick readme update before apply stash"
+On branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -am "quick readme update before apply stash"
+[master a3af73d] quick readme update before apply stash
+ 1 file changed, 1 insertion(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash pop
+On branch master
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        newfile.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+Dropped refs/stash@{0} (01bfe714ab53233f05701d6cb0e3ddad1ae15d95)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ rm newfile.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 3 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git commit -am "updated humans.txt after stash pop"
+[master 60635f4] updated humans.txt after stash pop
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+################################################################################
+# working with multiple stashes
+################################################################################
+# git stash save "description"
+# git stash show @stash{x}
+# git stash drop @stash{x}
+# git stash clear, drops ALL stashes 
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp robots.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash save "stash changes to robots.txt"
+Saved working directory and index state On master: stash changes to robots.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp humans.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash save "stash changes to humans.txt"
+Saved working directory and index state On master: stash changes to humans.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash save "stash changes to simple.html"
+Saved working directory and index state On master: stash changes to simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash list
+stash@{0}: On master: stash changes to simple.html
+stash@{1}: On master: stash changes to humans.txt
+stash@{2}: On master: stash changes to robots.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash show stash@{1}
+ humans.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash apply stash@{1}
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash drop stash@{1}
+Dropped stash@{1} (f1355499973afab3b90c9e1f352820b1719aa227)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash list
+stash@{0}: On master: stash changes to simple.html
+stash@{1}: On master: stash changes to robots.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash clear
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash list
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+################################################################################
+################################################################################
+# stashing into a branch
+################################################################################
+################################################################################
+git stash branch [branchname]
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash list
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp robots.txt
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+        modified:   robots.txt
+        modified:   simple.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git add simple.html
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   simple.html
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+        modified:   robots.txt
+
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ npp new.md
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   simple.html
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+        modified:   robots.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        new.md
+
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash -u
+Saved working directory and index state WIP on master: 60635f4 updated humans.txt after stash pop
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash list
+stash@{0}: WIP on master: 60635f4 updated humans.txt after stash pop
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git stash branch stashbranchtest
+Switched to a new branch 'stashbranchtest'
+On branch stashbranchtest
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   simple.html
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   humans.txt
+        modified:   robots.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        new.md
+
+Dropped refs/stash@{0} (22f70ec61bdead7948431db52245663bfdcf11c1)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (stashbranchtest)
+$ git stash list
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (stashbranchtest)
+$ rm new.dm
+rm: cannot remove 'new.dm': No such file or directory
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (stashbranchtest)
+$ rm new.md
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (stashbranchtest)
+$ git add .
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (stashbranchtest)
+$ git commit -m "updated several files with text descriptions"
+[stashbranchtest afbe7ee] updated several files with text descriptions
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (stashbranchtest)
+$ git checkout master
+Switched to branch 'master'
+Your branch is ahead of 'origin/master' by 4 commits.
+  (use "git push" to publish your local commits)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git merge stashbranchtest
+Updating 60635f4..afbe7ee
+Fast-forward
+ humans.txt  | 1 +
+ robots.txt  | 2 +-
+ simple.html | 1 +
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git status
+On branch master
+Your branch is ahead of 'origin/master' by 5 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+njwbu@DESKTOP-UKO6PO2 MINGW64 /e/git/projects/starter-web (master)
+$ git branch -d stashbranchtest
+Deleted branch stashbranchtest (was afbe7ee).
+
+
+
+
